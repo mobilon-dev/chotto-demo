@@ -1,4 +1,4 @@
-import { useModal, ModalNoFooter } from '@mobilon-dev/chotto';
+import { useModal, ModalNoFooter, CreateDialog } from '@mobilon-dev/chotto';
 
 export const useModalCreateDialog = async (
   title: string, 
@@ -9,7 +9,7 @@ export const useModalCreateDialog = async (
   theme?: string
 ) => {
   const data = await useModal({
-    component: () => import('@mobilon-dev/chotto'),
+    component: CreateDialog,
     attrs: {
       title, 
       name,
