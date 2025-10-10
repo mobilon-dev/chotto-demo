@@ -28,6 +28,7 @@
                 :scroll-to-bottom="isScrollToBottomOnUpdateObjectsEnabled"
                 :typing="selectedChat.typingIn"
                 :enable-double-click-reply="true"
+                :chat-background="chatBackground"
                 @message-action="messageAction"
                 @load-more="loadMore"
                 @message-visible="messageVisible"
@@ -57,15 +58,18 @@ import {
   FloatContainer,
   FeedLayout,
   ChatWrapper,
-  formatTimestamp,
   ThemeMode,
   AudioRecorder,
   VideoRecorder,
+  formatTimestamp 
 } from "@mobilon-dev/chotto";
+
+import chatBackground from '../../../../public/chat-background.svg';
 
 import { useChatsStore } from "../../../stores/chatsStore";
 import { transformToFeed } from "../../../transform/transformToFeed";
 import { useNewMessage } from "../useNewMessage";
+
 
 const {newMessage} = useNewMessage()
 

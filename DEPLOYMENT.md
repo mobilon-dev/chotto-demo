@@ -12,7 +12,7 @@
    git add .
    git commit -m "Initial commit"
    git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/chotto-demo.git
+   git remote add origin https://github.com/mobilon-dev/chotto-demo.git
    git push -u origin main
    ```
 
@@ -25,7 +25,7 @@
    - Перейдите во вкладку "Actions" в вашем репозитории
    - Дождитесь завершения workflow "Deploy to GitHub Pages"
    - После успешного завершения ваш сайт будет доступен по адресу:
-     `https://boombosha.github.io/chotto-demo/`
+     `https://mobilon-dev.github.io/chotto-demo/`
 
 ## Ручное развертывание
 
@@ -48,12 +48,12 @@ npm run deploy
 
 ```javascript
 export default defineConfig({
-  base: '/chotto-demo/',  // Путь к подпапке на boombosha.github.io
+  base: '/chotto-demo/',  // Путь к подпапке на mobilon-dev.github.io
   plugins: [vue()],
 })
 ```
 
-Это означает, что ваш Vue.js проект будет доступен по адресу `https://boombosha.github.io/chotto-demo/`
+Это означает, что ваш Vue.js проект будет доступен по адресу `https://mobilon-dev.github.io/chotto-demo/`
 
 ## Устранение проблем
 

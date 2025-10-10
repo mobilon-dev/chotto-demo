@@ -1,4 +1,5 @@
-import {sortByTimestamp, formatTimestamp, insertDaySeparators} from '@mobilon-dev/chotto';
+import {sortByTimestamp, insertDaySeparators} from '../helpers';
+import { formatTimestamp } from '@mobilon-dev/chotto';
 
 export const transformToFeed = (objects: any[], index: number) => {
   // а. сортировка по timestamp

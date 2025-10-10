@@ -59,6 +59,7 @@
                 :typing="selectedChat.typing"
                 :enable-double-click-reply="true"
                 :apply-style="setMessageStyle"
+                :chat-background="chatBackground"
                 @message-action="messageAction"
                 @load-more="loadMore"
                 @message-visible="messageVisible"
@@ -120,22 +121,20 @@ import {
   ChatPanel,
   FloatContainer,
   ChatWrapper,
-  formatTimestamp,
-  insertDaySeparators,
-  playNotificationAudio,
-  sortByTimestamp,
   BaseLayout,
   FileUploader,
   ButtonEmojiPicker,
   ButtonTemplateSelector,
   ThemeMode,
-  useModalCreateDialog,
-  AudioRecorder,
+  formatTimestamp
 } from "@mobilon-dev/chotto";
+
+import chatBackground from '../../../../public/chat-background.svg';
 
 import { useChatsStore } from "../../../stores/chatsStore";
 import { transformToFeed } from "../../../transform/transformToFeed";
 import { useNewMessage } from "../useNewMessage";
+import { useModalCreateDialog } from "../../../helpers/useCreateDialog";
 
 const {newMessage} = useNewMessage()
 

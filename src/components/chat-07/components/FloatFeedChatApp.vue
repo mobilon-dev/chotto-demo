@@ -27,6 +27,7 @@
                 :objects="messages"
                 :scroll-to-bottom="isScrollToBottomOnUpdateObjectsEnabled"
                 :typing="selectedChat.typingIn"
+                :chat-background="chatBackground"
                 @message-action="messageAction"
                 @load-more="loadMore"
                 @message-visible="messageVisible"
@@ -59,10 +60,12 @@ import {
   FloatContainer,
   FeedLayout,
   ChatWrapper,
-  formatTimestamp,
   ThemeMode,
   ButtonCommandsSelector,
+  formatTimestamp
 } from "@mobilon-dev/chotto";
+
+import chatBackground from '../../../../public/chat-background.svg';
 
 import { useChatsStore } from "../../../stores/chatsStore";
 import { useAuthStore } from "../store/authStore";

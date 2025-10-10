@@ -74,6 +74,7 @@
                 :typing="selectedChat.typing"
                 :scroll-to="clickedMessage"
                 :enable-double-click-reply="true"
+                :chat-background="chatBackground"
                 @message-action="messageAction"
                 @load-more="loadMore"
                 @message-visible="messageVisible"
@@ -130,10 +131,6 @@ import {
   ChatPanel,
   FloatContainer,
   ChatWrapper,
-  formatTimestamp,
-  insertDaySeparators,
-  playNotificationAudio,
-  sortByTimestamp,
   BaseLayout,
   FileUploader,
   ButtonEmojiPicker,
@@ -141,7 +138,10 @@ import {
   ThemeMode,
   FeedSearch,
   FeedFoundObjects,
+  formatTimestamp 
 } from "@mobilon-dev/chotto";
+
+import chatBackground from '../../../../public/chat-background.svg';
 
 import { useChatsStore } from "../../../stores/chatsStore";
 import { transformToFeed } from "../../../transform/transformToFeed";

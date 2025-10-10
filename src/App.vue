@@ -2,8 +2,14 @@
 import { ButtonContextMenu } from '@mobilon-dev/chotto';
 import router from './router';
 import { useIndexedTitle } from './useIndexedTitle';
+import { provide, useId } from 'vue';
 
 const {currentIndex} = useIndexedTitle()
+
+// Предоставляем chatAppId и extChatAppId для компонентов библиотеки chotto
+const chatAppId = useId()
+provide('chatAppId', chatAppId)
+provide('extChatAppId', '')
 const chats = [
   {
     index: 0,

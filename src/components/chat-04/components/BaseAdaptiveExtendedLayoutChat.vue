@@ -123,6 +123,7 @@
                 :scroll-to="clickedMessage"
                 :scroll-to-bottom="isScrollToBottomOnUpdateObjectsEnabled"
                 :enable-double-click-reply="true"
+                :chat-background="chatBackground"
                 @message-action="messageAction"
                 @message-visible="messageVisible"
               />
@@ -195,7 +196,6 @@ import {
   ChatPanel,
   BaseContainer,
   ChatWrapper,
-  formatTimestamp,
   AdaptiveExtendedLayout,
   FileUploader,
   ButtonEmojiPicker,
@@ -206,8 +206,11 @@ import {
   FeedFoundObjects,
   SideBar,
   ButtonTemplateSelector,
-  ButtonContextMenu
+  ButtonContextMenu,
+  formatTimestamp
 } from "@mobilon-dev/chotto";
+
+import chatBackground from '../../../../public/chat-background.svg';
 
 import { useChatsStore } from "../../../stores/chatsStore";
 import { transformToFeed } from "../../../transform/transformToFeed";

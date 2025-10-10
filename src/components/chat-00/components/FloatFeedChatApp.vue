@@ -29,6 +29,7 @@
               :scroll-to-bottom="isScrollToBottomOnUpdateObjectsEnabled"
               :typing="selectedChat.typing"
               :enable-double-click-reply="true"
+              :chat-background="chatBackground"
               @message-action="messageAction"
               @load-more="loadMore"
               @message-visible="messageVisible"
@@ -76,9 +77,11 @@ import {
   ChatWrapper,
   ButtonTemplateSelector,
   ButtonWabaTemplateSelector,
-  formatTimestamp,
   ThemeMode,
+  formatTimestamp
 } from "@mobilon-dev/chotto";
+
+import chatBackground from '../../../../public/chat-background.svg';
 
 import { useChatsStore } from "../../../stores/chatsStore";
 import { transformToFeed } from "../../../transform/transformToFeed";
@@ -213,7 +216,7 @@ const addMessage = (message) => {
   chatsStore.updateChatNewMessage(
     selectedChat.value.chatId,
     0,
-    chatMessageText,
+    message.text,
     formatTimestamp(Date.now() / 1000),
     Date.now() / 1000,
     'received',
