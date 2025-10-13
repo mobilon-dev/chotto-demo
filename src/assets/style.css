@@ -1,6 +1,6 @@
 @import url(themes/custom/_theme.css);
-@import url(themes/mobilon1/custom.scss);
-@import url(themes/light/custom.scss);
-@import url(themes/green/custom.scss);
-@import url(themes/dark/custom.scss);
+@import url(themes/mobilon1/index.scss);
+@import url(themes/light/index.scss);
+@import url(themes/green/index.scss);
+@import url(themes/dark/index.scss);
 

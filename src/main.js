@@ -1,6 +1,12 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import '/node_modules/@mobilon-dev/chotto/dist/chotto.css';
+
+import '@mobilon-dev/chotto/style.css';
+import '@mobilon-dev/chotto/themes/default.css';
+import '@mobilon-dev/chotto/themes/dark.css';
+import '@mobilon-dev/chotto/themes/green.css';
+import '@mobilon-dev/chotto/themes/mobilon1.css';
+
 import 'primeicons/primeicons.css'
 import './assets/style.css'
 
