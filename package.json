@@ -14,7 +14,7 @@
     "@fontsource/montserrat": "^5.2.8",
     "@fontsource/open-sans": "^5.2.7",
     "@microsoft/fetch-event-source": "^2.0.1",
-    "@mobilon-dev/chotto": "^0.3.8",
+    "@mobilon-dev/chotto": "^0.3.9",
     "axios": "^1.7.9",
     "pinia": "^2.2.8",
     "primeicons": "^7.0.0",
