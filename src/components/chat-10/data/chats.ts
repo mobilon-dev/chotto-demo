@@ -22,6 +22,7 @@ export const chats = [
   },
   {
     chatId: 2, name: "Алексей",
+    avatar: 'https://randomuser.me/api/portraits/men/12.jpg',
     countUnread: 1, countUnreadOut: 0,
     isFixedBottom: false,
     isFixedTop: false,
@@ -39,7 +40,8 @@ export const chats = [
     status: 'lightgreen',
   },
   {
-    chatId: 3, name: "Борис — поддержка",
+    chatId: 3, name: "Борис",
+    avatar: 'https://randomuser.me/api/portraits/men/45.jpg',
     countUnread: 3, countUnreadOut: 0,
     isFixedBottom: false,
     isFixedTop: false,
@@ -57,7 +59,8 @@ export const chats = [
     status: 'lightgreen',
   },
   {
-    chatId: 4, name: "Василий — продажи",
+    chatId: 4, name: "Виктор",
+    avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
     countUnread: 0, countUnreadOut: 0,
     isFixedBottom: false,
     isFixedTop: false,
@@ -75,7 +78,8 @@ export const chats = [
     status: 'lightgreen',
   },
   {
-    chatId: 5, name: "Радий — финансы",
+    chatId: 5, name: "Святослав",
+    avatar: 'https://randomuser.me/api/portraits/men/36.jpg',
     countUnread: 5, countUnreadOut: 0,
     isFixedBottom: false,
     isFixedTop: false,
@@ -93,7 +97,8 @@ export const chats = [
     status: 'lightgreen',
   },
   {
-    chatId: 6, name: "Виталий — проекты",
+    chatId: 6, name: "Анатолий",
+    avatar: 'https://randomuser.me/api/portraits/men/52.jpg',
     countUnread: 0, countUnreadOut: 1,
     isFixedBottom: false,
     isFixedTop: false,

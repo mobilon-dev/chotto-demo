@@ -12,11 +12,7 @@
           <SideBar
             v-if="sidebarFirstCol"
             :sidebar-items="sidebarItems"
-            @select="handleSelectSidebarItem"
-            @click="handleSelectSidebarItem"
-            @change="handleSelectSidebarItem"
             @select-item="handleSelectSidebarItem"
-            @item-click="handleSelectSidebarItem"
           />
           <ThemeMode
             :themes="themes"
@@ -42,6 +38,7 @@
           </div>
           
           <ChatList
+            :key="chatsKey"
             v-if="!isOpenSearchPanel || (isOpenSearchPanel && feedSearchFeedCol)"
             ref="refChatList"
             :chats="chatsStore.chats"
@@ -54,11 +51,7 @@
                 v-if="!sidebarFirstCol"
                 horizontal
                 :sidebar-items="sidebarItems"
-                @select="handleSelectSidebarItem"
-                @click="handleSelectSidebarItem"
-                @change="handleSelectSidebarItem"
                 @select-item="handleSelectSidebarItem"
-                @item-click="handleSelectSidebarItem"
               />
             </template>
           </ChatList>
@@ -294,6 +287,8 @@ const filebumpUrl = ref('https://filebump2.services.mobilon.ru');
 
 const sidebarItems = ref([]);
 const selectedSidebarItemId = ref('')
+const sidebarKey = ref(0)
+const chatsKey = ref(0)
 const clickedMessage = ref('')
 const notFoundMessage = ref(false)
 const foundMessages = ref([])
@@ -308,6 +303,7 @@ const chatPanelWidth = ref(50)
 
 const refContainer = ref()
 const refChatWrapper = ref()
+const refChatList = ref()
 
 const handleOpenSearchPanel = () => {
   isOpenSearchPanel.value = !isOpenSearchPanel.value
@@ -408,16 +404,15 @@ const selectChat = (args) => {
   isSecondColVisible.value = false
   isThirdColVisible.value = true
   selectedChat.value = args.chat;
-  // выставить selected-флаг у текущего чата для визуальной индикации
-  chatsStore.chats = chatsStore.chats.map((c) => ({
-    ...c,
-    selected: c.chatId === selectedChat.value.chatId
-  }))
+
+  chatsStore.chats.forEach((c) => {
+    c.isSelected = c.chatId === selectedChat.value.chatId
+  })
   if (selectedChat.value.countUnread > 0){
     chatsStore.setUnreadCounter(args.chat.chatId, 0);
     chatsStore.readMessages(args.chat.chatId, props.index + 1)
   }
-  messages.value = getFeedObjects(); // Обновляем сообщения при выборе контакта
+  messages.value = getFeedObjects();
 };
 
 const searchMessages = (string) => {
@@ -506,6 +501,7 @@ onMounted(() => {
   const initiallySelected = sidebarItems.value.find((i) => i.selected)
   if (initiallySelected){
     handleSelectSidebarItem({ itemId: initiallySelected.itemId })
+    forceHighlightSelectedChat()
   }
   if (unref(refContainer).$el){
     resizeObserver.observe(unref(refContainer).$el)
@@ -518,7 +514,7 @@ onMounted(() => {
 // обработка клика по элементу сайдбара: отмечаем выбранный и фильтруем чаты
 const handleSelectSidebarItem = (payload) => {
 
-  console.log('[SideBar select] payload =', payload)
+  console.log('[SideBar selectItem] payload =', payload)
 
   const itemId = payload?.itemId || payload?.item?.itemId || payload
   selectedSidebarItemId.value = itemId
@@ -536,17 +532,16 @@ const handleSelectSidebarItem = (payload) => {
   }
 
   const prevSelectedId = selectedChat.value?.chatId
-  const nextList = filtered.map((c) => ({
-    ...c,
-    selected: prevSelectedId ? c.chatId === prevSelectedId : false
-  }))
-  chatsStore.chats = nextList
-  const hasSelected = nextList.some((c) => c.selected)
-  if (!hasSelected && nextList.length > 0){
-    nextList[0].selected = true
+  // пометить isSelected на исходных объектах
+  filtered.forEach((c) => {
+    c.isSelected = prevSelectedId ? c.chatId === prevSelectedId : false
+  })
+  chatsStore.chats = filtered
+  let current = filtered.find((c) => c.isSelected)
+  if (!current && filtered.length > 0){
+    filtered[0].isSelected = true
+    current = filtered[0]
   }
-
-  const current = nextList.find((c) => c.selected)
   if (current){
     selectedChat.value = current
     messages.value = getFeedObjects()
@@ -554,6 +549,29 @@ const handleSelectSidebarItem = (payload) => {
     selectedChat.value = null
     messages.value = []
   }
+  chatsKey.value++
+  forceHighlightSelectedChat()
+  sidebarKey.value++
+}
+
+const forceHighlightSelectedChat = () => {
+  nextTick(() => {
+    const comp = unref(refChatList)
+    const root = comp && comp.$el ? comp.$el : null
+    if (!root) return
+    const candidates = root.querySelectorAll('.chat-list__item, .chat-item, [data-chat-id], li')
+    if (!candidates || candidates.length === 0) return
+    let target = candidates[0]
+    if (selectedChat.value){
+      candidates.forEach((node) => {
+        // попытка найти по data-chat-id
+        if (node.dataset && node.dataset.chatId && node.dataset.chatId == String(selectedChat.value.chatId)){
+          target = node
+        }
+      })
+    }
+    if (target && target.click) target.click()
+  })
 }
 </script>
 

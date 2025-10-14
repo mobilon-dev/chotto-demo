@@ -1,7 +1,7 @@
 export const sidebarItems = [
   {
     itemId: 'itemId0',
-    icon: 'https://placehold.jp/30/dd6699/ffffff/64x64.png?text=SD',
+    icon: 'https://randomuser.me/api/portraits/men/13.jpg',
     name: 'Василий Петрович',
     notificationCount: 100,
     selected: false,
@@ -10,7 +10,7 @@ export const sidebarItems = [
   },
   {
     itemId: 'itemId1',
-    icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
+    icon: 'https://randomuser.me/api/portraits/men/10.jpg',
     name: 'Радий Юсупович',
     notificationCount: 10,
     notificationColor: '#FF0000',
@@ -19,7 +19,7 @@ export const sidebarItems = [
   },
   {
     itemId: 'itemId2',
-    icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=MV',
+    icon: 'https://randomuser.me/api/portraits/men/9.jpg',
     name: 'Виталий',
     notificationCount: 7,
     notificationColor: '#FF0000',
@@ -28,7 +28,7 @@ export const sidebarItems = [
   },
   {
     itemId: 'itemId3',
-    icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=DP',
+    icon: 'https://randomuser.me/api/portraits/men/4.jpg',
     name: 'Юрий',
     notificationCount: 0,
     notificationColor: '#FF0000',
@@ -44,6 +44,6 @@ export const sidebarItems = [
     notificationCount: 99,
     notificationColor: '#00FF00',
     selected: false,
-    chatIds: [3,4],
+    chatIds: [1,2,3,4,5,6],
   },
 ];
