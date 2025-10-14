@@ -51,6 +51,10 @@ const chats = [
     index: 9,
     title: 'Chat09 - custom placeholders',
   },
+  {
+    index: 10,
+    title: 'Chat10 - sidebar items',
+  },
 ]
 
 const handleClick = (action) => {

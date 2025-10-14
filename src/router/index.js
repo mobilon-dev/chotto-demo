@@ -9,6 +9,8 @@ import ChatDemo6 from '../components/chat-06/ChatDemo6.vue';
 import ChatDemo7 from '../components/chat-07/ChatDemo7.vue';
 import ChatDemo8 from '../components/chat-08/ChatDemo8.vue';
 import ChatDemo9 from '../components/chat-09/ChatDemo9.vue';
+import ChatDemo10 from '../components/chat-10/ChatDemo10.vue';
+
 const router = createRouter({
   history: createWebHashHistory('/'),
   routes: [
@@ -55,6 +57,10 @@ const router = createRouter({
     {
       path: '/9',
       component: ChatDemo9
+    },
+    {
+      path: '/10',
+      component: ChatDemo10
     },
   ]
 })
