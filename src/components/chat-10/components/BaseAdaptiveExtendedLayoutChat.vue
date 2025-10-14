@@ -12,6 +12,11 @@
           <SideBar
             v-if="sidebarFirstCol"
             :sidebar-items="sidebarItems"
+            @select="handleSelectSidebarItem"
+            @click="handleSelectSidebarItem"
+            @change="handleSelectSidebarItem"
+            @select-item="handleSelectSidebarItem"
+            @item-click="handleSelectSidebarItem"
           />
           <ThemeMode
             :themes="themes"
@@ -49,6 +54,11 @@
                 v-if="!sidebarFirstCol"
                 horizontal
                 :sidebar-items="sidebarItems"
+                @select="handleSelectSidebarItem"
+                @click="handleSelectSidebarItem"
+                @change="handleSelectSidebarItem"
+                @select-item="handleSelectSidebarItem"
+                @item-click="handleSelectSidebarItem"
               />
             </template>
           </ChatList>
@@ -283,6 +293,7 @@ const isScrollToBottomOnUpdateObjectsEnabled = ref(false);
 const filebumpUrl = ref('https://filebump2.services.mobilon.ru');
 
 const sidebarItems = ref([]);
+const selectedSidebarItemId = ref('')
 const clickedMessage = ref('')
 const notFoundMessage = ref(false)
 const foundMessages = ref([])
@@ -397,6 +408,11 @@ const selectChat = (args) => {
   isSecondColVisible.value = false
   isThirdColVisible.value = true
   selectedChat.value = args.chat;
+  // выставить selected-флаг у текущего чата для визуальной индикации
+  chatsStore.chats = chatsStore.chats.map((c) => ({
+    ...c,
+    selected: c.chatId === selectedChat.value.chatId
+  }))
   if (selectedChat.value.countUnread > 0){
     chatsStore.setUnreadCounter(args.chat.chatId, 0);
     chatsStore.readMessages(args.chat.chatId, props.index + 1)
@@ -486,6 +502,11 @@ onMounted(() => {
   channels.value = props.dataProvider.getChannels();
   templates.value = props.dataProvider.getTemplates()
   sidebarItems.value = props.dataProvider.getSidebarItems();
+  // выбрать заранее отмеченный selected элемент, если есть
+  const initiallySelected = sidebarItems.value.find((i) => i.selected)
+  if (initiallySelected){
+    handleSelectSidebarItem({ itemId: initiallySelected.itemId })
+  }
   if (unref(refContainer).$el){
     resizeObserver.observe(unref(refContainer).$el)
   }
@@ -493,6 +514,47 @@ onMounted(() => {
     resizeObserver.observe(unref(refChatWrapper).$el)
   }
 });
+
+// обработка клика по элементу сайдбара: отмечаем выбранный и фильтруем чаты
+const handleSelectSidebarItem = (payload) => {
+
+  console.log('[SideBar select] payload =', payload)
+
+  const itemId = payload?.itemId || payload?.item?.itemId || payload
+  selectedSidebarItemId.value = itemId
+
+  sidebarItems.value = sidebarItems.value.map((it) => ({
+    ...it,
+    selected: it.itemId === itemId
+  }))
+  const item = sidebarItems.value.find((i) => i.itemId === itemId)
+  if (!item) return
+  const allChats = props.dataProvider.getChats()
+  let filtered = allChats
+  if (Array.isArray(item.chatIds) && item.chatIds.length > 0){
+    filtered = allChats.filter((c) => item.chatIds.includes(c.chatId))
+  }
+
+  const prevSelectedId = selectedChat.value?.chatId
+  const nextList = filtered.map((c) => ({
+    ...c,
+    selected: prevSelectedId ? c.chatId === prevSelectedId : false
+  }))
+  chatsStore.chats = nextList
+  const hasSelected = nextList.some((c) => c.selected)
+  if (!hasSelected && nextList.length > 0){
+    nextList[0].selected = true
+  }
+
+  const current = nextList.find((c) => c.selected)
+  if (current){
+    selectedChat.value = current
+    messages.value = getFeedObjects()
+  } else {
+    selectedChat.value = null
+    messages.value = []
+  }
+}
 </script>
 
 <style scoped>
