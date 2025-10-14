@@ -1,7 +1,12 @@
+import image13 from './images/13.jpg'
+import image10 from './images/10.jpg'
+import image9 from './images/9.jpg'
+import image4 from './images/4.jpg'
+
 export const sidebarItems = [
   {
     itemId: 'itemId0',
-    icon: 'https://randomuser.me/api/portraits/men/13.jpg',
+    icon: image13,
     name: 'Василий Петрович',
     notificationCount: 100,
     selected: false,
@@ -10,7 +15,7 @@ export const sidebarItems = [
   },
   {
     itemId: 'itemId1',
-    icon: 'https://randomuser.me/api/portraits/men/10.jpg',
+    icon: image10,
     name: 'Радий Юсупович',
     notificationCount: 10,
     notificationColor: '#FF0000',
@@ -19,7 +24,7 @@ export const sidebarItems = [
   },
   {
     itemId: 'itemId2',
-    icon: 'https://randomuser.me/api/portraits/men/9.jpg',
+    icon: image9,
     name: 'Виталий',
     notificationCount: 7,
     notificationColor: '#FF0000',
@@ -28,12 +33,11 @@ export const sidebarItems = [
   },
   {
     itemId: 'itemId3',
-    icon: 'https://randomuser.me/api/portraits/men/4.jpg',
+    icon: image4,
     name: 'Юрий',
     notificationCount: 0,
     notificationColor: '#FF0000',
     selected: false,
-    // пример группы: несколько чатов
     chatIds: [1,2,3],
   },
   {

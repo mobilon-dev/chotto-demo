@@ -1,3 +1,9 @@
+import image1 from './images/1.jpg'
+import image12 from './images/12.jpg'
+import image45 from './images/45.jpg'
+import image36 from './images/36.jpg'
+import image52 from './images/52.jpg'
+
 export const chats = [
   {
     chatId: 1, name: "Юрий",
@@ -22,7 +28,7 @@ export const chats = [
   },
   {
     chatId: 2, name: "Алексей",
-    avatar: 'https://randomuser.me/api/portraits/men/12.jpg',
+    avatar: image12,
     countUnread: 1, countUnreadOut: 0,
     isFixedBottom: false,
     isFixedTop: false,
@@ -41,7 +47,7 @@ export const chats = [
   },
   {
     chatId: 3, name: "Борис",
-    avatar: 'https://randomuser.me/api/portraits/men/45.jpg',
+    avatar: image45,
     countUnread: 3, countUnreadOut: 0,
     isFixedBottom: false,
     isFixedTop: false,
@@ -60,7 +66,7 @@ export const chats = [
   },
   {
     chatId: 4, name: "Виктор",
-    avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
+    avatar: image1,
     countUnread: 0, countUnreadOut: 0,
     isFixedBottom: false,
     isFixedTop: false,
@@ -79,7 +85,7 @@ export const chats = [
   },
   {
     chatId: 5, name: "Святослав",
-    avatar: 'https://randomuser.me/api/portraits/men/36.jpg',
+    avatar: image36,
     countUnread: 5, countUnreadOut: 0,
     isFixedBottom: false,
     isFixedTop: false,
@@ -98,7 +104,7 @@ export const chats = [
   },
   {
     chatId: 6, name: "Анатолий",
-    avatar: 'https://randomuser.me/api/portraits/men/52.jpg',
+    avatar: image52,
     countUnread: 0, countUnreadOut: 1,
     isFixedBottom: false,
     isFixedTop: false,
